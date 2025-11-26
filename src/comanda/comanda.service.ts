@@ -60,10 +60,10 @@ export class ComandaService {
   }
 
   async deletarComanda(id: number) {
-    await this.encontrarComanda(id);
+    const comanda = await this.encontrarComanda(id);
 
     await this.prisma.mesa.update({
-      where: { id },
+      where: { id: comanda.mesaId },
       data: { status: StatusMesa.LIVRE },
     });
 

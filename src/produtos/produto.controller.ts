@@ -15,6 +15,7 @@ import { CreateProdutoDTO } from './DTOs/create-produto.dto';
 import { UpdateProdutoDTO } from './DTOs/update-produto.dto';
 import { Public } from 'src/auth/public.decorator';
 
+
 @Controller('produto')
 export class ProdutoController {
   constructor(private readonly produtoService: ProdutoService) {}
@@ -33,17 +34,18 @@ export class ProdutoController {
     return this.produtoService.encontrarProdutoPorId(id);
   }
 
-  @Public()
   @HttpCode(HttpStatus.CREATED)
   @Post()
   create(@Body() data: CreateProdutoDTO) {
     return this.produtoService.criarProduto(data);
   }
 
-  @Public()
   @HttpCode(HttpStatus.OK)
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() data: UpdateProdutoDTO) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: UpdateProdutoDTO,
+  ) {
     return this.produtoService.atualizarProduto(id, data);
   }
 

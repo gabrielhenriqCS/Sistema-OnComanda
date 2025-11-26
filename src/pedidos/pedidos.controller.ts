@@ -12,6 +12,7 @@ import { PedidosService } from './pedidos.service';
 import { CreatePedidoDTO } from './DTOs/create-pedido.dto';
 import { Public } from 'src/auth/public.decorator';
 
+
 @Controller('pedidos')
 export class PedidosController {
   constructor(private readonly pedidosService: PedidosService) {}

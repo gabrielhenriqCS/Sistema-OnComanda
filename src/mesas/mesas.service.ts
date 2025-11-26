@@ -15,8 +15,8 @@ export class MesasService {
     return this.mesasRepo.findAll();
   }
 
-  encontrarMesaPorId(id: number) {
-    const mesa = this.mesasRepo.findById(id);
+  async encontrarMesaPorId(id: number) {
+    const mesa = await this.mesasRepo.findById(id);
 
     if (!mesa) {
       throw new NotFoundException('Mesa não encontrada.');

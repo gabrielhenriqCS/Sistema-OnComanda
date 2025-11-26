@@ -10,15 +10,17 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
-import { CreateUsuarioDTO } from './../usuarios/DTOs/create-usuario.dto';
+import { LoginDTO } from './login.dto';
+import { Public } from './public.decorator';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  fazerLogin(@Body() loginDto: CreateUsuarioDTO) {
+  fazerLogin(@Body() loginDto: LoginDTO) {
     return this.authService.fazerLogin(loginDto.email, loginDto.senha);
   }
 
